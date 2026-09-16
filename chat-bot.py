@@ -13,11 +13,11 @@ while True:
     elif "hows going" in user:
         bot = "Great Here Whats good?"
         print("bot:", bot)
-    elif "hows going" in user:
-        bot = "Great Here Whats good?"
+    elif "bye" in user:
+        bot = "Leaving me? :( BYE!!"
         print("bot:", bot)
     else:
-        bot = user
+        bot = "ERROR I dont understand"
         print("bot:", bot)
 
 print("Thanks For Chatting <3")
