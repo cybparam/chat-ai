@@ -33,9 +33,6 @@ while True:
     if user == "exit":
         break
     else:
-        if len(words) > 1:
-            word = words[-2] + " " + words[-1]
-        else:
-            word = words[-1]
+        word = words[-2] + " " + words[-1]
         bot = reply()
         print("bot: ", bot)
