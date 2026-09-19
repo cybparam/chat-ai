@@ -1,21 +1,19 @@
-import time
+import json
 
-def reply():
-    prediction = text_data[user]
-    prediction = max(prediction, key=prediction.get)
-    return prediction
+try:
+    with open("data.json", "r") as file:
+        text_data = json.load(file)
+        for words in text_data:
+            text_data[words] = {count: int(c) for count, c in text_data[words].items()}
+except FileNotFoundError:
+    text_data = {}
 
-text_data = {}
-
-print("Starting Training mode")
-time.sleep(1)
 while True:
     print("Type Exit to leave the chat!")
     user = input("Enter Text: ").lower()
     words = user.split()
 
     if user == "exit":
-        time.sleep(1)
         break
     else:
         for i in range(len(words) - 1):
@@ -25,14 +23,5 @@ while True:
                 text_data[words[i]][words[i + 1]] = 0
             text_data[words[i]][words[i + 1]] += 1
 
-print("In Chatting Mode")
-time.sleep(1)
-while True:
-    print("Type Exit to leave the chat!")
-    user = input("Enter Text: ").lower()
-
-    if user == "exit":
-        break
-    else:
-        bot = reply()
-        print("AI: ", bot)
+with open("data.json", "w") as file:
+    json.dump(text_data, file, indent=4)
