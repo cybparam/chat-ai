@@ -1,23 +1,38 @@
-print("Welcome! :) ")
-print("Enter Quit to exit")
+import time
+
+def reply():
+    prediction = text_data[user]
+    prediction = max(prediction, key=prediction.get)
+    return prediction
+
+text_data = {}
+
+print("Starting Training mode")
+time.sleep(1)
 while True:
-    user = input("Enter Text: ")
-    user = user.lower()
+    print("Type Exit to leave the chat!")
+    user = input("Enter Text: ").lower()
+    words = user.split()
 
-    if "quit" in user:
+    if user == "exit":
+        time.sleep(1)
         break
-
-    if "hello" in user:
-        bot = "Hello! Greetings :)"
-        print("bot:", bot)
-    elif "hows going" in user:
-        bot = "Great Here Whats good?"
-        print("bot:", bot)
-    elif "bye" in user:
-        bot = "Leaving me? :( BYE!!"
-        print("bot:", bot)
     else:
-        bot = "ERROR I dont understand"
-        print("bot:", bot)
+        for i in range(len(words) - 1):
+            if words[i] not in text_data:
+                text_data[words[i]] = {}
+            if words[i + 1] not in text_data[words[i]]:
+                text_data[words[i]][words[i + 1]] = 0
+            text_data[words[i]][words[i + 1]] += 1
 
-print("Thanks For Chatting <3")
+print("In Chatting Mode")
+time.sleep(1)
+while True:
+    print("Type Exit to leave the chat!")
+    user = input("Enter Text: ").lower()
+
+    if user == "exit":
+        break
+    else:
+        bot = reply()
+        print("AI: ", bot)
