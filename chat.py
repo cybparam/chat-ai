@@ -23,11 +23,9 @@ def reply():
         if r <= cumulative:
             return w
 
-print("Starting Training mode")
-time.sleep(1)
-
 print("In Chatting Mode")
 time.sleep(1)
+
 while True:
     print("Type Exit to leave the chat!")
     user = input("Enter Text: ").lower()
@@ -35,6 +33,9 @@ while True:
     if user == "exit":
         break
     else:
-        word = words[-1]
+        if len(words) > 1:
+            word = words[-2] + " " + words[-1]
+        else:
+            word = words[-1]
         bot = reply()
         print("bot: ", bot)

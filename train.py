@@ -16,12 +16,14 @@ while True:
     if user == "exit":
         break
     else:
-        for i in range(len(words) - 1):
-            if words[i] not in text_data:
-                text_data[words[i]] = {}
-            if words[i + 1] not in text_data[words[i]]:
-                text_data[words[i]][words[i + 1]] = 0
-            text_data[words[i]][words[i + 1]] += 1
+        for i in range(len(words) - 2):
+            context = words[i] + " " + words[i+1]
+            next_word = words[i + 2]
+            if context not in text_data:
+                text_data[context] = {}
+            if next_word not in text_data[words[i]]:
+                text_data[context][next_word] = 0
+            text_data[context][next_word] += 1
 
 with open("data.json", "w") as file:
     json.dump(text_data, file, indent=4)

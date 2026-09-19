@@ -1,10 +1,6 @@
 {
-    "i": {
-        "love": 6
-    },
-    "love": {
-        "apples": 3,
-        "bananas": 2,
-        "mangoes": 1
+    "i love": {
+        "apples": 1,
+        "bananas": 1
     }
 }
